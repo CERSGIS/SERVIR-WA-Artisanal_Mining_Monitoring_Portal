@@ -1,0 +1,142 @@
+<!doctype html>
+{% load static %}
+
+<html class="" lang="">
+
+    <head>
+       
+    </head>
+
+	
+    <body>
+
+        <style type="text/css">
+            .highcharts-credits{
+                display: none;
+            }
+        </style>
+
+	
+    		<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+    	
+		<!-- <div class="" style="width:100%; background-color: #fff; padding: 10% 10% 20%; height:100%; z-index: 9999;">
+			<p style=" font-size: 16px; font-weight: 600; text-align: center">
+				No mining sites are available  <br> in this area
+			</p>
+			
+		</div>
+			 -->
+		
+	
+		
+			
+		
+
+		
+	</body>
+	
+
+
+
+	<script type="text/javascript">
+
+
+
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Area Computations'
+    },
+    // subtitle: {
+    //     text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+    // },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Area in sq Kilometer'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: 'Area: <b>{point.y:.3f} </b>  km2'
+    },
+    series: [{
+        name: 'Area',
+        data: [
+
+
+        {% for aa in result %}
+
+            {{aa|safe}},
+
+        {% endfor %}
+          
+        ],
+
+
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.3f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    }]
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+
+</html>
+

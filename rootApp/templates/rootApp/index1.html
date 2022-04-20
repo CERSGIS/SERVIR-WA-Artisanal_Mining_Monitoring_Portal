@@ -1,0 +1,1427 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/static/rootApp/asset/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <link href="/static/rootApp/asset/css/style.css" rel="stylesheet" />
+    <link href="/static/rootApp/asset/css/jquery-ui.css" rel="stylesheet" />
+    <!--Plugin CSS file with desired skin-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.12/leaflet.draw.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"
+    />
+
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+
+      .img-comp-container {
+        position: relative;
+        height: 100vh;
+        /*should be the same height as the images*/
+      }
+
+      .img-comp-img {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .img-comp-slider {
+        position: absolute;
+        z-index: 999999999;
+        cursor: ew-resize;
+        /*set the appearance of the slider:*/
+        width: 40px;
+        height: 40px;
+        background-color: #2196f3;
+        opacity: 0.7;
+        border-radius: 50%;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .ui-dialog {
+        z-index: 10000 !important;
+      }
+
+      .ui-dialog #dialog {
+        padding: 5px !important;
+      }
+
+      .btn-update {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        background-color: rgb(248 255 252 / 46%);
+        border: 2px solid #8dd4b2;
+        border-radius: 50px;
+        width: auto;
+        height: 30px;
+        margin-bottom: 10px;
+      }
+
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        z-index: 99999;
+        background:#f9f3f3fa;
+      }
+      .loader {
+        position: relative;
+        width: 30%;
+        margin-left: 35%;
+        margin-top: 43vh;
+      }
+
+      .overlay1 {
+        position: absolute;
+        width: 100%;
+        height: 50vh;
+        z-index: 99999;
+        background: #ffffffeb;
+      }
+
+      .alert {
+        z-index: 99999;
+        margin-bottom: 0px !important;
+      }
+
+      .loader1 {
+        position: relative;
+        width: 30%;
+        margin-left: 35%;
+        margin-top: 20vh;
+      }
+
+      .overlay2 {
+        position: absolute;
+        width: 100%;
+        height: 50vh;
+        z-index: 99999;
+        background: #ffffffeb;
+      }
+
+      .loader2 {
+        position: relative;
+        width: 30%;
+        margin-left: 35%;
+        margin-top: 10vh;
+      }
+
+      .overlay3 {
+        position: absolute;
+        width: 100%;
+        height: 50vh;
+        z-index: 99999;
+        background: #ffffffeb;
+      }
+
+      .loader3 {
+        position: relative;
+        width: 30%;
+        margin-left: 35%;
+        margin-top: 10vh;
+      }
+
+      .galaimages {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background-color: #ff7800;
+      }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XB6G29VRDZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XB6G29VRDZ');
+    </script>
+  </head>
+
+  <body>
+    <div id="overlay" class="overlay">
+      <div class="col-md-12">
+        <img class="loader" src="/static/rootApp/asset/images/loader.gif" />
+      </div>
+    </div>
+    <header class="to-header topbar">
+      <img
+        id=""
+        target="_blank"
+        src="/static/rootApp/asset/images/logo/SERVIR-WA.png"
+        class="logo pull-right"
+        title="SERVIR West Africa"
+        style=""
+      />
+      <img
+        id=""
+        target="_blank"
+        src="/static/rootApp/asset/images/logo/usaid.png"
+        class="logo"
+        title="USAID"
+      />
+      <img
+        id=""
+        target="_blank"
+        src="/static/rootApp/asset/images/logo/nasa.png"
+        class="logo"
+        title="NASA"
+      />
+      <img
+        id=""
+        target="_blank"
+        src="/static/rootApp/asset/images/logo/cliss.png"
+        class="logo"
+        title="CLISS"
+      />
+      <img
+        id=""
+        target="_blank"
+        src="/static/rootApp/asset/images/logo/cersgis.png"
+        class="logo"
+        title="CERSGIS"
+      />
+      <!-- <a class="navbar-brand" href="#" style="color: #fff; font-size: 21px;">Tethys Django App</a> -->
+    </header>
+    <nav class="navbar navbar-default topbar abovemap">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar-collapse-4"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="" class=""></div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-4">
+          <h4 class="title-block">Small Scale Mining Portal</h4>
+          <ul class="nav navbar-nav" style="float: right">
+            <li class="active"><a href="/map/">Home</a></li>
+            <!--  <li><a href="map.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" /> Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" style="z-index: 10002!important;">
+                            <li><a href="#"> drop 1 </a></li>
+                            <li><a href="#"> drop 2 </a></li>
+                        </ul>
+                    </li> -->
+            <li><a href="/map/about">About</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <div class="img-comp-container">
+      <div class="img-comp-img">
+        <div id="alert" class="alert alert-danger alert-dismissible hidden">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close"
+            >&times;</a
+          >
+         <center> <strong>Sorry!</strong>Please check your internet connectivity and try
+          again .</center>
+        </div>
+        <div id="noimage" class="alert alert-info alert-dismissible hidden">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close"
+            >&times;</a
+          >
+         <center> <strong>Sorry!   </strong>   There were no images for your request .
+        </div></center>
+        <div class="map" id="mapid">
+          <div class="lgnd abovemap">
+            <div class="col-md-12" style="padding: 0px"></div>
+          </div>
+          <div class="inner abovemap">
+            <div class="inner-side inner1">
+              <img
+                id="zin"
+                src="/static/rootApp/asset/images/mapcons/zin1.png"
+                class="mapicon"
+                title="Zoom in"
+              />
+              <img
+                id="zout"
+                src="/static/rootApp/asset/images/mapcons/zout1.png"
+                class="mapicon"
+                title="Zoom out"
+              />
+              <img
+                id="info"
+                src="/static/rootApp/asset/images/mapcons/info1.png"
+                class="mapicon"
+                title="About"
+              />
+              <img
+                id="Zoomextent"
+                src="/static/rootApp/asset/images/mapcons/extent1.png"
+                class="mapicon"
+                title="extent"
+              />
+              <img
+                id="opener"
+                src="/static/rootApp/asset/images/mapcons/ruler1.png"
+                class="mapicon"
+                title="toggle Legend"
+              />
+              <img
+                id="toogle"
+                src="/static/rootApp/asset/images/mapcons/toggle1.png"
+                class="mapicon hidden"
+                title="Compare Layers"
+              />
+              <img
+                id="legendbtn"
+                src="/static/rootApp/asset/images/mapcons/legend1.png"
+                class="mapicon"
+                title="toggle legend"
+              />
+              <img
+                id="analytic"
+                src="/static/rootApp/asset/images/mapcons/ana.png"
+                class="mapicon"
+                title="Timeseries Analysis"
+              />
+               <img
+                id="download"
+                src="/static/rootApp/asset/images/mapcons/dl.png"
+                class="mapicon"
+                title="Download"
+              />
+              <!-- <img id="zoombase" src="/static/rootApp/asset/images/mapcons/basemap1.png" class="mapicon" title="toggle basemap"> -->
+            </div>
+            <div class="side layerbox">
+              <div class="inner-side inner2">
+                <div id="toolbar" class="printhidden">
+                  <img
+                    id="close"
+                    src="/static/rootApp/asset/images/mapcons/close.png"
+                    class="toolbaricon"
+                    title="toggle Duration"
+                  />
+                </div>
+                <div id="toolbox" class="toolbox">
+                  <div class="accordion">
+                    <div
+                      class="panel-group"
+                      id="accordion"
+                      role="tablist"
+                      aria-multiselectable="true"
+                    >
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                            <a
+                              role="button"
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              href="#collapseOne"
+                              aria-expanded="true"
+                              aria-controls="collapseOne"
+                            >
+                              <i class="more-less glyphicon glyphicon-plus"></i>
+                              Boundaries
+                            </a>
+                          </h4>
+                        </div>
+                        <div
+                          id="collapseOne"
+                          class="panel-collapse collapse"
+                          role="tabpanel"
+                          aria-labelledby="headingOne"
+                        >
+                          <div class="panel-body">
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="ecowasCheck" class="layer disp on">
+                                Ecowas
+                                <i
+                                  class="fa fa-eye disp on"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                            </div>
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="regionCheck"  class="layer">
+                                Region
+                                <i
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                            </div>
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="districtCheck" class="layer">
+                                District
+                                <i
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                            </div>
+
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="settlementCheck" class="layer">
+                                Settlement
+                                <i
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                            </div>
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="proectedCheck" class="layer">
+                                Protected Area
+                                <i
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingSix">
+                          <h4 class="panel-title">
+                            <a
+                              role="button"
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              href="#collapseSix"
+                              aria-expanded="true"
+                              aria-controls="collapseOne"
+                            >
+                              <i class="more-less glyphicon glyphicon-plus"></i>
+                              Additional Layers
+                            </a>
+                          </h4>
+                        </div>
+                        <div
+                          id="collapseSix"
+                          class="panel-collapse collapse"
+                          role="tabpanel"
+                          aria-labelledby="headingSix"
+                        >
+                          <div class="panel-body">
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="landsatCheck" class="layer">
+                                Landsat 8 Composite
+                                <i
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                              <select id="landsatcompo" class="form-control">
+                                <option></option>
+                                <option>2015</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                              </select>
+                            </div>
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="aoicheck" class="layer">
+                                Galamsey Area of Interest
+                                <i
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                            </div>
+
+                            <div class="layerbar">
+                              <div id="galacheck" class="layer">
+                                Galamsey Site Photos
+                                <i
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                            </div>
+                            <!-- Layer Bar-->
+                            <!--  <div class="layerbar">
+                                                        <div id="districtCheck" class="layer"> District
+                                                            <i class="fa fa-eye-slash disp off" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div> -->
+
+                            <!-- Layer Bar-->
+                            <!--  <div class="layerbar">
+                                                        <div id="settlementCheck"  class="layer"> Settlement
+                                                            <i class="fa fa-eye-slash disp off" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div> -->
+                            <!-- Layer Bar-->
+                            <!--  <div class="layerbar">
+                                                        <div id="proectedCheck" class="layer"> Protected Area
+                                                            <i class="fa fa-eye-slash disp off" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                          <h4 class="panel-title">
+                            <a
+                              class="collapsed"
+                              role="button"
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              href="#collapseTwo"
+                              aria-expanded="false"
+                              aria-controls="collapseTwo"
+                            >
+                              <i class="more-less glyphicon glyphicon-plus"></i>
+                              Query Dataset
+                            </a>
+                          </h4>
+                        </div>
+                        <div
+                          id="collapseTwo"
+                          class="panel-collapse collapse"
+                          role="tabpanel"
+                          aria-labelledby="headingTwo"
+                        >
+                          <div class="panel-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="layerbar">
+                                  <div id="filterlayer" class="layer">
+                                    Query 1 layer
+                                    <i
+                                      id="filtereye"
+                                      class="fa fa-eye-slash disp off"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </div>
+                                  <input
+                                    type="range"
+                                    min="0"
+                                    max="10"
+                                    value="10"
+                                    title="opacity"
+                                    sliderref="miningsite{{dt}}"
+                                    class="slider miningareaslider hidden"
+                                    id="query1range"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <h5 style="margin-left: 7%">Query 1</h5>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="col-md-5" style="">
+                                  <p>Start Date</p>
+                                  <input
+                                    class=""
+                                    type="date"
+                                    id="from"
+                                    name="from"
+                                  />
+                                </div>
+                                <div class="col-md-5 col-md-offset-1" style="">
+                                  <p>End Date</p>
+                                  <input
+                                    class=""
+                                    type="date"
+                                    id="to"
+                                    name="to"
+                                  />
+                                </div>
+                              </div>
+                              <br />
+                              <div class="col-sm-12" style="padding-top: 15px">
+                                <div class="col-sm-offset-4 col-md-4">
+                                  <button id="query1" class="btn btn-success">
+                                    update
+                                    <i
+                                      id="loadquery1"
+                                      class="fas fa-cog fa-spin hidden"
+                                    ></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="layerbar">
+                                  <div id="filterlayer2" class="layer">
+                                    Query 2 layer
+                                    <i
+                                      id="filtereye2"
+                                      class="fa fa-eye-slash disp off"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </div>
+
+                                  <input
+                                    type="range"
+                                    min="0"
+                                    max="10"
+                                    value="10"
+                                    title="opacity"
+                                    sliderref="miningsite{{dt}}"
+                                    class="slider miningareaslider hidden"
+                                    id="query2range"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-sm-12">
+                                <h5 style="margin-left: 7%">Query 2</h5>
+                              </div>
+                              <div class="col-sm-12">
+                                <div class="col-md-5" style="">
+                                  <p>Start Date</p>
+                                  <input
+                                    class=""
+                                    type="date"
+                                    id="from1"
+                                    name="from"
+                                  />
+                                </div>
+                                <div class="col-md-5 col-md-offset-1" style="">
+                                  <p>End Date</p>
+                                  <input
+                                    class=""
+                                    type="date"
+                                    id="to1"
+                                    name="to"
+                                  />
+                                </div>
+                              </div>
+                              <br />
+                              <div class="col-sm-12" style="padding-top: 15px">
+                                <div class="col-sm-offset-4 col-md-4">
+                                  <button id="query2" class="btn btn-success">
+                                    update
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <br />
+                            <br />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                          <h4 class="panel-title">
+                            <a
+                              class="collapsed"
+                              role="button"
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              href="#collapseThree"
+                              aria-expanded="false"
+                              aria-controls="collapseThree"
+                            >
+                              <i class="more-less glyphicon glyphicon-plus"></i>
+                              Analysis on Querryset
+                            </a>
+                          </h4>
+                        </div>
+                        <div
+                          id="collapseThree"
+                          class="panel-collapse collapse"
+                          role="tabpanel"
+                          aria-labelledby="headingThree"
+                        >
+                          <div class="panel-body">
+                            <div class="layerbar">
+                              <button class="btn btn-success" id="buttonchange">
+                                Click to view Analysis
+                              </button>
+                            </div>
+
+                            <!-- Layer Bar-->
+                            <div class="layerbar">
+                              <div id="filterlayer3" class="layer">
+                                Inactive
+                                <i
+                                  id="filtereye3"
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                              <input
+                                type="range"
+                                min="0"
+                                max="10"
+                                value="10"
+                                title="opacity"
+                                sliderref="miningsite{{dt}}"
+                                class="slider miningareaslider"
+                                id="query3range"
+                              />
+                            </div>
+                            <div class="layerbar">
+                              <div id="filterlayer4" class="layer">
+                                Newly active
+                                <i
+                                  id="filtereye4"
+                                  class="fa fa-eye-slash disp off"
+                                  aria-hidden="true"
+                                ></i>
+                              </div>
+                              <input
+                                type="range"
+                                min="0"
+                                max="10"
+                                value="10"
+                                title="opacity"
+                                sliderref="miningsite{{dt}}"
+                                class="slider miningareaslider"
+                                id="query4range"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading4">
+                          <h4 class="panel-title">
+                            <a
+                              class="collapsed"
+                              role="button"
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              href="#collapse4"
+                              aria-expanded="false"
+                              aria-controls="collapse4"
+                            >
+                              <i class="more-less glyphicon glyphicon-plus"></i>
+                              Basemaps
+                            </a>
+                          </h4>
+                        </div>
+                        <div
+                          id="collapse4"
+                          class="panel-collapse collapse"
+                          role="tabpanel"
+                          aria-labelledby="heading4"
+                        >
+                          <div class="panel-body">
+                            <div class="">
+                              <div class="col-md-4 lgndthumb" id="basemap1">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/cartodb_positron.png"
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="basemap9">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/esri_oceanbasemap.png "
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="basemap3">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/esri_worldterrain.png "
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="basemap2">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/here_satelliteday.png "
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="basemap5">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/stamen_toner.png "
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="basemap6">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/here_normalday.png "
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="basemap7">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/esriworldshadedrelief.png "
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="basemap8">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/openstreetmap_blackandwhite.png "
+                                />
+                              </div>
+                              <div class="col-md-4 lgndthumb" id="no_basemap">
+                                <img
+                                  src="/static/rootApp/asset/images/maplegend/white.png"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- panel-group -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--   <div class="slider-year-container" id="asd">
+                    <input type="text" class="js-range-slider" name="my_range" value="" />
+                </div> -->
+          <div id="dialog" title="Charts">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <span class="">
+                  <!-- Tabs -->
+                  <ul class="nav panel-tabs">
+                    <li class="active">
+                      <a href="#tab1" data-toggle="tab"
+                        >Quarterly Time Series
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#tab2" data-toggle="tab"> Daily Time Series </a>
+                    </li>
+                  </ul>
+                </span>
+              </div>
+              <div class="panel-body">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tab1">
+                    <div class="row">
+                      <div class="col-md-4 date-row" style="">
+                        <div class="form-group">
+                          <label for="sel1">FROM:</label>
+
+                          <!-- <input id="tfrom" class="form-control" type="date" name=""> -->
+
+                          <select id="tfrom" class="form-control">
+                            <option></option>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                            <option>2020</option>
+                            <option>2021</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 date-row" style="">
+                        <div class="form-group">
+                          <label for="sel1">END:</label>
+                          <!--      <input id="tto" class="form-control" type="date" name=""> -->
+                          <select id="tto" class="form-control">
+                            <option></option>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                            <option>2020</option>
+                            <option>2021</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 date-row" style="">
+                        <br>
+                        <button id="subyearchart" class="btn btn-success">submit</button>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="overlay2 hidden">
+                        <div class="col-md-12">
+                          <img
+                            class="loader2"
+                            src="/static/rootApp/asset/images/loader.gif"
+                          />
+                        </div>
+                      </div>
+
+                      <div id="tsresults"></div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="tab2">
+                    <div class="row">
+                      <div class="col-md-4 date-row" style="">
+                        <div class="form-group">
+                          <label for="sel1">FROM:</label>
+
+                          <input
+                            id="datefrom"
+                            class="form-control"
+                            type="date"
+                            name=""
+                          />
+
+                          <!--  <select id="tfrom" class="form-control" >
+                                                    <option>   </option>
+                                                    <option>2014</option>
+                                                    <option>2015</option>
+                                                    <option>2016</option>
+                                                    <option>2017</option>
+                                                    <option>2018</option>
+                                                    <option>2019</option>
+                                                    <option>2020</option>
+                                                    <option>2021</option>
+                                               </select> -->
+                        </div>
+                      </div>
+                      <div class="col-md-4 date-row" style="">
+                        <div class="form-group">
+                          <label for="sel1">END:</label>
+                          <input
+                            id="dateto"
+                            class="form-control"
+                            type="date"
+                            name=""
+                          />
+                          <!--   <select id="tto" class="form-control" >
+                                                    <option>     </option>
+                                                    <option>2014</option>
+                                                    <option>2015</option>
+                                                    <option>2016</option>
+                                                    <option>2017</option>
+                                                    <option>2018</option>
+                                                    <option>2019</option>
+                                                    <option>2020</option>
+                                                    <option>2021</option>
+                                               </select> -->
+                        </div>
+                      </div>
+                      <div class="col-md-4 date-row" style="">
+                        <br>
+                        <button id="subdailychart" class="btn btn-success">submit</button>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="overlay3 hidden">
+                        <div class="col-md-12">
+                          <img
+                            class="loader3"
+                            src="/static/rootApp/asset/images/loader.gif"
+                          />
+                        </div>
+                      </div>
+
+                      <div id="dateresults"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Legenddialog" title="Legend">
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <div class="grouplayer">
+                  <h4 class="legendHead">Query</h4>
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Query 1
+                      <span class="lgdicon query1"> </span>
+                    </div>
+                  </div>
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Query 2
+                      <span class="lgdicon query2"> </span>
+                    </div>
+                  </div>
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Newly Active
+                      <span class="lgdicon Active"> </span>
+                    </div>
+                  </div>
+
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Inactive
+                      <span class="lgdicon Inactive"> </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="grouplayer">
+                  <h4 class="legendHead">Boundary</h4>
+
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Ecowas
+                      <span class="lgdicon Ecowas"> </span>
+                    </div>
+                  </div>
+                  <div class="layerbar1">
+                    <div id="regionCheck" onclick="alert("fgdfgdfd")" class="layer">
+                      Region
+                      <span class="lgdicon Region"> </span>
+                    </div>
+                  </div>
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      District
+                      <span class="lgdicon District"> </span>
+                    </div>
+                  </div>
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Settlement
+                      <span class="lgdicon_point Settlement"> </span>
+                    </div>
+                  </div>
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Galamsey Site Images
+                      <span class="lgdicon_point galaimages"> </span>
+                    </div>
+                  </div>
+                  <div class="layerbar1">
+                    <div id="regionCheck" class="layer">
+                      Protected Area
+                      <span class="lgdicon Protected"> </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="about_dialog" title="About dialog">
+            <p>
+              The portal is developed by CERSGIS for the purposes of visualizing
+              galamsey areas to support SERVIR WEST AFRICA's Galamsey Monitoring
+              System.
+            </p>
+          </div>
+
+          <div id="changedetection" title="Change Analysis">
+            <div class="overlay1 hidden">
+              <div class="col-md-12">
+                <img
+                  class="loader1"
+                  src="/static/rootApp/asset/images/loader.gif"
+                />
+              </div>
+            </div>
+
+            <div class="row" id="analysis_cont"></div>
+          </div>
+        </div>
+      </div>
+      <div class="img-comp-img img-comp-overlay" style="z-index: 998">
+        <div
+          class="map"
+          id="mapid2"
+          style="
+            width: 100%;
+            height: 94vh;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 998;
+          "
+        >
+          <div style="z-index: 999; position: absolute; right: 5vw">
+            <div class="row">
+              <div class="col-md-4 date-row" style="">
+                <p>Start Date</p>
+                <input class="date-ui" type="date" id="from2" name="from" />
+              </div>
+              <div class="col-md-4 date-row" style="">
+                <p>End Date</p>
+                <input class="date-ui" type="date" id="to2" name="to" />
+              </div>
+
+              <div class="col-md-4">
+                <br />
+                <br />
+                <button id="compareupdate1" class="btn btn-success">
+                  UPDATE
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Plugin JavaScript file-->
+
+    {% comment %}
+    <script src="/static/rootApp/asset/js/jquery.min.js"></script>
+    <script src="/static/rootApp/asset/js/bootstrap.min.js"></script>
+    {% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.12/leaflet.draw.js"></script>
+    <script
+      type="text/javascript"
+      src="/static/rootApp/asset/js/L.Map.Sync.js"
+    ></script>
+    <script src="/static/rootApp/asset/js/jquery-ui.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/static/rootApp/asset/js/main.js"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    <script type="text/javascript">
+      initialbasemap = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+        }
+      );
+
+      var mymap = L.map("mapid", {
+        zoomControl: false,
+        layers: [initialbasemap],
+      }).setView([6.088, -2.063], 11);
+      // .addTo(mymap);
+
+      // initialbasemap.bringToBack();
+      var mymap2 = L.map("mapid2", { drawControl: false }).setView(
+        [6.088, -2.063],
+        11
+      );
+
+      // L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+      //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      //     maxZoom: 20,
+      //     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      // }).addTo(mymap2);
+
+      mymap.sync(mymap2);
+      mymap2.sync(mymap);
+    </script>
+    <script
+      type="text/javascript"
+      src="/static/rootApp/asset/js/myfunctions.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/static/rootApp/asset/js/map.js"
+    ></script>
+    <script type="text/javascript">
+     $(".overlay")
+        .delay(0)
+        .queue(function (next) {
+          $(this).css("display", "none");
+          next();
+        });
+      $("#toogle").click(function () {
+        $(".img-comp-overlay").toggleClass("hidden");
+        $(".img-comp-slider").toggleClass("hidden");
+      });
+
+      $("#dialog").dialog({
+        autoOpen: false,
+        width: 600,
+        minHeight: 500,
+        show: {
+          effect: "blind",
+          duration: 1000,
+        },
+        hide: {
+          effect: "blind",
+          duration: 1000,
+        },
+        position: { my: "center", at: "center", of: window },
+      });
+
+      $("#opener").on("click", function () {
+        if (!$("#Legenddialog").dialog("isOpen")) {
+          $("#Legenddialog").dialog("open");
+        } else {
+          $("#Legenddialog").dialog("close");
+        }
+      });
+
+      $("#analytic").on("click", function () {
+        $("#dialog").dialog("open");
+      });
+
+      $("#Legenddialog").dialog({
+        create: function (event, ui) {
+          var widget = $(this).dialog("widget");
+          $(".ui-dialog-titlebar-close span", widget)
+            .removeClass("ui-icon-closethick")
+            .addClass("ui-icon-minusthick");
+        },
+        autoOpen: false,
+        width: 300,
+        show: {
+          effect: "blind",
+          duration: 1000,
+        },
+        hide: {
+          effect: "blind",
+          duration: 1000,
+        },
+      });
+
+      $("#about_dialog").dialog({
+        autoOpen: false,
+        width: 900,
+        show: {
+          effect: "blind",
+          duration: 1000,
+        },
+        hide: {
+          effect: "blind",
+          duration: 1000,
+        },
+      });
+
+      $("#changedetection").dialog({
+        autoOpen: false,
+        width: 600,
+        minHeight: 500,
+        show: {
+          effect: "blind",
+          duration: 1000,
+        },
+        hide: {
+          effect: "blind",
+          duration: 1000,
+        },
+      });
+
+      $("#info").on("click", function () {
+        if (!$("#about_dialog").dialog("isOpen")) {
+          $("#about_dialog").dialog("open");
+        } else {
+          $("#about_dialog").dialog("close");
+        }
+      });
+
+      $(".js-range-slider").ionRangeSlider({
+        skin: "round",
+        grid: true,
+        // from: 2015,
+        values: [2015, 2018, 2019, 2020],
+      });
+
+      function initComparisons() {
+        var x, i;
+        /* Find all elements with an "overlay" class: */
+        x = document.getElementsByClassName("img-comp-overlay");
+        for (i = 0; i < x.length; i++) {
+          /* Once for each "overlay" element:
+            pass the "overlay" element as a parameter when executing the compareImages function: */
+          compareImages(x[i]);
+        }
+
+        function compareImages(img) {
+          var slider,
+            img,
+            clicked = 0,
+            w,
+            h;
+          /* Get the width and height of the img element */
+          w = img.offsetWidth;
+          h = img.offsetHeight;
+          /* Set the width of the img element to 50%: */
+          img.style.width = w / 2 + "px";
+          /* Create slider: */
+          slider = document.createElement("DIV");
+          slider.setAttribute("class", "img-comp-slider");
+          /* Insert slider */
+          img.parentElement.insertBefore(slider, img);
+          /* Position the slider in the middle: */
+          slider.style.top = h / 2 - slider.offsetHeight / 2 + "px";
+          slider.style.left = w / 2 - slider.offsetWidth / 2 + "px";
+          /* Execute a function when the mouse button is pressed: */
+          slider.addEventListener("mousedown", slideReady);
+          /* And another function when the mouse button is released: */
+          window.addEventListener("mouseup", slideFinish);
+          /* Or touched (for touch screens: */
+          slider.addEventListener("touchstart", slideReady);
+          /* And released (for touch screens: */
+          window.addEventListener("touchend", slideFinish);
+
+          function slideReady(e) {
+            /* Prevent any other actions that may occur when moving over the image: */
+            e.preventDefault();
+            /* The slider is now clicked and ready to move: */
+            clicked = 1;
+            /* Execute a function when the slider is moved: */
+            window.addEventListener("mousemove", slideMove);
+            window.addEventListener("touchmove", slideMove);
+          }
+
+          function slideFinish() {
+            /* The slider is no longer clicked: */
+            clicked = 0;
+          }
+
+          function slideMove(e) {
+            var pos;
+            /* If the slider is no longer clicked, exit this function: */
+            if (clicked == 0) return false;
+            /* Get the cursor's x position: */
+            pos = getCursorPos(e);
+            /* Prevent the slider from being positioned outside the image: */
+            if (pos < 0) pos = 0;
+            if (pos > w) pos = w;
+            /* Execute a function that will resize the overlay image according to the cursor: */
+            slide(pos);
+          }
+
+          function getCursorPos(e) {
+            var a,
+              x = 0;
+            e = e || window.event;
+            /* Get the x positions of the image: */
+            a = img.getBoundingClientRect();
+            /* Calculate the cursor's x coordinate, relative to the image: */
+            x = e.pageX - a.left;
+            /* Consider any page scrolling: */
+            x = x - window.pageXOffset;
+            return x;
+          }
+
+          function slide(x) {
+            /* Resize the image: */
+            img.style.width = x + "px";
+            /* Position the slider: */
+            slider.style.left = img.offsetWidth - slider.offsetWidth / 2 + "px";
+          }
+        }
+      }
+
+      initComparisons();
+
+      $("#toogle").trigger("click");
+
+      function convert(string) {
+        return string.split(".")[0];
+      }
+
+      // ################################  Load galamsey pic ####################################
+
+      function onEach_Imagepoints(feature, layer) {
+        // layer.on({ click: zoomToFeaturerpoint,
+        //  });
+
+        labeltoshow = '<div class="row">';
+
+        labeltoshow +=
+          '<a class="grouped_elements" data-fancybox="gallery" rel="group1"  href="https://servir.s3.eu-central-1.amazonaws.com/' +
+          convert(feature.properties.img) +
+          '.jpg "><img src="https://servir.s3.eu-central-1.amazonaws.com/' +
+          convert(feature.properties.img) +
+          '.jpg" style="width:100%" alt=""/></a>';
+
+        labeltoshow += "</div>";
+        labeltoshow +=
+          '<div class="row"> <h5> ' + feature.properties.date + "</h6>";
+        // labeltoshow +=
+        labeltoshow += "</div>";
+
+        layer.bindPopup(labeltoshow, { Width: "500px" });
+      }
+
+      $("a.grouped_elements").fancybox();
+
+      // $("#single_image").fancybox({
+      //         'transitionIn'  :   'elastic',
+      //         'transitionOut' :   'elastic',
+      //         'speedIn'       :   600,
+      //         'speedOut'      :   200,
+      //         'overlayShow'   :   false
+      //     });
+
+      var gala;
+      var galastyle = {
+        radius: 5,
+        fillColor: "#ff7800",
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8,
+      };
+
+      const geojsonurlpics = "http://boundapi.cersgis.org/galamseyimagesjson";
+     $.get(geojsonurlpics, function (data) {
+        gala = L.geoJSON(data, {
+          pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, galastyle);
+          },
+          onEachFeature: onEach_Imagepoints,
+        });
+      });
+
+      $("#galacheck").on("click", function (e) {
+        // layerseldefine(mymap, layerssm, orig)
+        layerTogglefunction(mymap, gala, $(this).hasClass("on"));
+      });
+    </script>
+  </body>
+</html>

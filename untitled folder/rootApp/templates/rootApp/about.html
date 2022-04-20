@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link href="/static/rootApp/asset/css/style.css" rel="stylesheet">
+    <link href="/static/rootApp/asset/css/jquery-ui.css" rel="stylesheet">
+    <style type="text/css">
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        .jumbotron p {
+            margin-bottom: 15px;
+             font-size: 17px; 
+            font-weight: 200;
+            text-align: justify;
+        }
+
+        hr {
+            margin: 20px 30% 50px;
+            border-top: 1px solid #0231a0;
+        }
+
+        .about {
+            min-height: calc(100vh - 88px)!important;
+            background: #fff;
+        }
+
+        .topImage {
+            background: url(https://images.gmanews.tv/webpics/2016/07/640_Capture_2016_07_20_21_58_06.JPG);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            min-height: 400px;
+        }
+
+        .text-center {
+            text-align: center!important;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="to-header topbar">
+        <img id="" target="_blank" src="/static/rootApp/asset/images/logo/SERVIR-WA.png" class="logo" title="SERVIR West Africa" style="">
+        <img id="" target="_blank" src="/static/rootApp/asset/images/logo/usaid.png" class="logo pull-right" title="USAID">
+        <img id="" target="_blank" src="/static/rootApp/asset/images/logo/nasa.png" class="logo pull-right" title="NASA">
+        <img id="" target="_blank" src="/static/rootApp/asset/images/logo/cliss.png" class="logo pull-right" title="CLISS">
+        <img id="" target="_blank" src="/static/rootApp/asset/images/logo/cersgis.png" class="logo pull-right" title="CERSGIS">
+
+        <!-- <a class="navbar-brand" href="#" style="color: #fff; font-size: 21px;">Tethys Django App</a> -->
+    </header>
+    <nav class="navbar navbar-default topbar">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-4">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="map.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" /> Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"> drop 1 </a></li>
+                            <li><a href="#"> drop 2 </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </nav>
+    <div class="about">
+        <div class="jumbotron text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 topImage">
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 50px;">
+                        <h2>About the <b> Small Scale Mining</b> portal</h2>
+                        <hr>
+                        <p>The artisanal mining monitoring service in Ghana is a partnership between NASA AST team, AGRHYMET/SERVIR-WA, A Rocha and CERSGIS to utilize earth observation data to map artisanal mining areas and ultimately develop user - defined Geographic Information products to support and guide the strategies and policy formulation in regard to the environment. </p>
+
+                        <p>  The service will provide the necessary spatial data input to decision makers and partners, such as A Rocha Ghana, who will use the information to target areas for remediation and landscape restoration activities."</p> <br><br>
+                        <h4> Contact Person(s):</h4>
+                        <hr style="margin-bottom: 20px;">
+                        <p class="text-center">Mary Amponsah <a href="mailto:mamponsah91@gmail.com">(mamponsah91@gmail.com)</a></p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="col-md-2">
+                        
+                        <img class="img-responsive" height="" style="margin:2px auto; height:70px!important;" src="http://servir.cersgis.org/static/portal/images/USAID_Logo_Color.png" alt="USAID">
+                    </div>
+                    <div class="col-md-2">
+                        
+                        <img class="img-responsive" height="" style="margin:2px auto; height:70px!important;" src="http://servir.cersgis.org/static/portal/images/NASA_Logo_Color.png" alt="NASA">
+                    </div>
+                    <div class="col-md-2">
+                        
+                        <img class="img-responsive" height="" style="margin:2px auto; height:70px!important;" src="http://servir.cersgis.org/static/portal/images/cliss.png" alt="CLISS">
+                    </div>
+                    <div class="col-md-2">
+                        
+                        <img class="img-responsive" height="" style="margin:2px auto; height:70px!important;" src="http://servir.cersgis.org/static/portal/images/cersgis.png" alt="CERSGIS">
+                    </div>
+                    <div class="col-md-4">
+                        
+                        <img class="img-responsive" height="" style="margin:2px auto; height:70px!important;" src="http://servir.cersgis.org/static/portal/images/Servir_Logo_Color.png" alt="SERVIR-WA">
+                    </div>
+                    </div>
+
+                    <div class="col-md-12"><br>
+                        <img class="" height="70px;" style="margin:2px 10px;" src="http://servir.cersgis.org/static/portal/images/partners/arocha.jpg" alt="arocha">
+                        <img class="" height="70px;" style="margin:2px 10px;" src="http://servir.cersgis.org/static/portal/images/partners/epa.jpg" alt="EPA">
+                        <img class="" height="70px;" style="margin:2px 10px;" src="http://servir.cersgis.org/static/portal/images/partners/ministry.jpg" alt="Government of Ghana">
+                        <img class="" height="70px;" style="margin:2px 10px;" src="http://servir.cersgis.org/static/portal/images/partners/fc.jpg" alt="Forestry Commission of Ghana">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- <div class="col-md-2A>
+                        
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-4">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/rootApp/asset/js/main.js"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+
+</html>
