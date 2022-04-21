@@ -1,2 +1,2 @@
-# SSM Portal/ Tethys
+# Artisanal Mining Monitoring Portal
  
