@@ -5,9 +5,7 @@ The galamsey monitoring portal was built on 100% open-source framework and libra
 
 All computations and querries are been processed using google earth engine python API . which sends results in a form of xyz tiles layer which can be rendered in the leaflet JS or json.
 
-<a href="https://www.youtube.com/embed/P3eIoQicb_E">
-  <img src="img/timg/galup_intro.png" alt="Monitoring Artisanal Mining Activities in Ghana Using Google Earth Engine." width="800">
-</a><br>
+[![Video](https://img.youtube.com/vi/P3eIoQicb_E/0.jpg)](https://www.youtube.com/watch?v=P3eIoQicb_E)
 
 ## Links
 [SSM Portal] (http://ssmportal.cersgis.org/)
