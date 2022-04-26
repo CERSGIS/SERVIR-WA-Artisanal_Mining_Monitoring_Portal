@@ -14,10 +14,7 @@ Visit (http://ssmportal.cersgis.org/) to view the portal.
 [![Monitoring Artisanal Mining Activities In Ghana Using Earth Observation Data](https://img.youtube.com/vi/P3eIoQicb_E/0.jpg)](https://www.youtube.com/watch?v=P3eIoQicb_E)
 
 ## Useful Links
-[SERVIR](https://servirglobal.net/)
-
-[CERSGIS](https://cersgis.org/)
-
-[USAID](https://www.usaid.gov/)
-
+[SERVIR](https://servirglobal.net/) || 
+[CERSGIS](https://cersgis.org/) || 
+[USAID](https://www.usaid.gov/) || 
 [NASA](https://www.nasa.gov/)
