@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'tethys.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': '<name_variable>',
-        'USER': '<user_variable>',
-        'PASSWORD':'<password_variable>',
+        'NAME': '<name_variable>', # 'NAME': 'my_db',
+        'USER': '<user_variable>', # 'USER': 'postgress',
+        'PASSWORD':'<password_variable>', # 'PASSWORD': 'my_password',
         'HOST':'localhost',
-        'PORT':'<port_number_variable>'
+        'PORT':'<port_number_variable>' # 'PORT': '8080'
     }
 
     }
